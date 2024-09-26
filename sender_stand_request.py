@@ -1,6 +1,15 @@
-#URL_SERVICE = "copia la URL generada sin la barra inclinada al final"
-URL_SERVICE = "https://cnt-ad18a26e-81fa-4c68-a9fc-56ca3b62bf7b.containerhub.tripleten-services.com"
-#DOC_PATH = "/docs/"
-DOC_PATH = "/docs/"
+import configuration
+import requests
+import data
 
-CREATE_USER_PATH = "/api/v1/users/"
+
+def post_new_user(body):
+    return requests.post(configuration.URL_SERVICE + configuration.CREATE_USER_PATH, json=body, headers=data.headers)
+
+def get_users_table():
+    return requests.get(configuration.URL_SERVICE + configuration.USERS_TABLE_PATH)
+
+response = get_users_table()
+
+print(response.status_code)
+
